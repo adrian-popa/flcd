@@ -17,10 +17,10 @@ class SymbolTable:
             if isinstance(new_entry, Identifier):
                 self.table.add(new_entry.get_key(), new_entry.get_value())
 
-    def get(self, name):
-        return self.table.get(name)
+    def get(self, key):
+        return self.table.get(key)
 
     def print_symbol_table(self):
-        for name in self.table.items():
-            value = self.table.items()[name]
+        for key in self.table.items():
+            value = self.table.items()[key]
             print("{ ID:", value[0], ", Value:", value[1], "}")

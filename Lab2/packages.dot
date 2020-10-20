@@ -1,0 +1,15 @@
+digraph "packages" {
+charset="utf-8"
+rankdir=BT
+"0" [label="src", shape="box"];
+"1" [label="src.constant", shape="box"];
+"2" [label="src.hash_table", shape="box"];
+"3" [label="src.identifier", shape="box"];
+"4" [label="src.main", shape="box"];
+"5" [label="src.symbol_table", shape="box"];
+"4" -> "1" [arrowhead="open", arrowtail="none"];
+"4" -> "3" [arrowhead="open", arrowtail="none"];
+"4" -> "5" [arrowhead="open", arrowtail="none"];
+"5" -> "2" [arrowhead="open", arrowtail="none"];
+"5" -> "3" [arrowhead="open", arrowtail="none"];
+}

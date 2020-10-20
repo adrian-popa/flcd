@@ -1,0 +1,8 @@
+digraph "classes" {
+charset="utf-8"
+rankdir=BT
+"0" [label="{Constant|key\lvalue\l|get_key()\lget_value()\l}", shape="record"];
+"1" [label="{HashTable|\l|add(key, value)\lget(key)\litems()\l}", shape="record"];
+"2" [label="{Identifier|key\lvalue\l|get_key()\lget_value()\lset_key(key)\lset_value(value)\l}", shape="record"];
+"3" [label="{SymbolTable|checkingTable : dict\ltable\l|add(new_entry)\lget(name)\lprint_symbol_table()\l}", shape="record"];
+}

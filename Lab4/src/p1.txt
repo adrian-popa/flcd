@@ -1,0 +1,8 @@
+integer task findMax(integer n1, integer n2, integer n3) defines: {
+    integer max equals n1
+    when n2 is greater than max:
+        max equals n2
+    when n3 is greater than max:
+        max equals n3
+    return max
+}

@@ -1,0 +1,14 @@
+digraph "packages" {
+charset="utf-8"
+rankdir=BT
+"0" [label="src", shape="box"];
+"1" [label="src.main", shape="box"];
+"2" [label="src.models", shape="box"];
+"3" [label="src.models.constant", shape="box"];
+"4" [label="src.models.hash_table", shape="box"];
+"5" [label="src.models.identifier", shape="box"];
+"6" [label="src.models.program_internal_form", shape="box"];
+"7" [label="src.models.scanner", shape="box"];
+"8" [label="src.models.symbol_table", shape="box"];
+"1" -> "7" [arrowhead="open", arrowtail="none"];
+}

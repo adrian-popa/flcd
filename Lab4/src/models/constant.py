@@ -8,7 +8,7 @@ class Constant:
         return self.key == other.get_key()
 
     def __str__(self):
-        return self.key + " " + str(self.value)
+        return self.key + ' ' + str(self.value)
 
     def get_key(self):
         return self.key

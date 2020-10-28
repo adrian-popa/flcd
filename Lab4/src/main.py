@@ -12,8 +12,8 @@ def main():
     token_file.readline()
     for i in range(10):
         separator = token_file.readline().strip()
-        if separator == "space":
-            separator = " "
+        if separator == 'space':
+            separator = ' '
         separators.append(separator)
     for i in range(10):
         operators.append(token_file.readline().strip())

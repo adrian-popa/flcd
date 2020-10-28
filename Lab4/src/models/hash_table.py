@@ -29,14 +29,15 @@ class HashTable:
 
     def get_position(self, key):
         hashed_key = int(hashlib.sha1(str(key).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
-        list_position = hashed_key
-        list_index = 0
-        for item in self.__items[list_position]:
+        index = 0
+
+        for item in self.__items[hashed_key]:
             if item != key:
-                list_index += 1
+                index += 1
             else:
                 break
-        return (list_position, list_index)
+
+        return hashed_key, index
 
     def items(self):
         return self.__items
@@ -44,5 +45,5 @@ class HashTable:
     def __str__(self) -> str:
         result = 'Symbol Table\n'
         for i in range(self.__size):
-            result = result + str(i) + '->' + str(self.__items[i]) + '\n'
+            result += str(i) + '->' + str(self.__items[i]) + '\n'
         return result

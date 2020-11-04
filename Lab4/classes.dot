@@ -1,10 +1,6 @@
 digraph "classes" {
 charset="utf-8"
 rankdir=BT
-"0" [label="{Constant|key\lvalue\l|get_key()\lget_value()\l}", shape="record"];
-"1" [label="{HashTable|\l|add(key)\lcontains(key)\lget(key)\lget_position(key)\litems()\lremove(key)\l}", shape="record"];
-"2" [label="{Identifier|key\lvalue\l|get_key()\lget_value()\lset_key(key)\lset_value(value)\l}", shape="record"];
-"3" [label="{ProgramInternalForm|\l|add(token, position)\l}", shape="record"];
-"4" [label="{Scanner|\l|get_operator_token(line, index)\lget_pif()\lget_st()\lget_string_token(line, index)\lis_operator_token(char)\lscan()\ltokenize(line)\l}", shape="record"];
-"5" [label="{SymbolTable|table\l|add(new_entry)\lcontains(key)\lget(key)\lget_position(key)\lget_table()\lprint_symbol_table()\lremove(key)\l}", shape="record"];
+"0" [label="{FiniteAutomata|F\lQ\lS\lq0\lsigma\l|from_file(file_name)\lget_F()\lget_Q()\lget_S()\lget_sigma()\lis_dfa()\lparse_line(line)\lparse_transitions(parts)\l}", shape="record"];
+"1" [label="{UI|\l|print_menu()\lrun()\l}", shape="record"];
 }

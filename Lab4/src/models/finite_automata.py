@@ -14,24 +14,26 @@ class FiniteAutomata:
         return 'Σ = { ' + ', '.join(self.sigma) + ' }'
 
     def get_S(self):
-        return 'S = { ' + ', '.join([' -> '.join([str(part) for part in trans]) for trans in self.S]) + ' }'
+        return 'S = { ' + ', '.join([(str(key) + ' -> ' + str(self.S[key])) for key in self.S.keys()]) + ' }'
 
     def get_F(self):
         return 'F = { ' + ', '.join(self.F) + ' }'
 
     def is_dfa(self):
-        paths = {}
-        for transition in self.S:
-            state1, route = transition[0]
-            if (state1, route) in paths.keys():
-                paths[(state1, route)] += 1
-            else:
-                paths[(state1, route)] = 1
-        for edge_count in paths.values():
-            if edge_count > 1:
+        for transition in self.S.keys():
+            if len(self.S[transition]) > 1:
                 return False
         return True
 
+    def is_sequence_accepted(self, sequence):
+        if not self.is_dfa():
+            return False
+        state = self.q0
+        for symbol in sequence.strip():
+            if (state, symbol) not in self.S.keys():
+                return False
+            state = self.S[state, symbol][0]
+        return state in self.F
 
     @staticmethod
     def from_file(file_name):
@@ -42,6 +44,10 @@ class FiniteAutomata:
             F = FiniteAutomata.parse_line(file.readline())
             S = FiniteAutomata.parse_transitions(FiniteAutomata.parse_line(''.join([line for line in file])))
 
+            if not FiniteAutomata.is_valid(Q, sigma, q0, F, S):
+                print("Invalid FA read from file.")
+                return None
+
             return FiniteAutomata(Q, sigma, q0, F, S)
 
     @staticmethod
@@ -50,7 +56,7 @@ class FiniteAutomata:
 
     @staticmethod
     def parse_transitions(parts):
-        result = []
+        result = {}
         transitions = []
         index = 0
 
@@ -63,14 +69,30 @@ class FiniteAutomata:
             state2 = rhs.strip()
             state1, route = [value.strip() for value in lhs.strip()[1:-1].split(',')]
 
-            result.append(((state1, route), state2))
-
-            # if (state1, route) in result:
-            #     result[(state1, route)].append(state2)
-            # else:
-            #     result[(state1, route)] = [state2]
+            if (state1, route) in result:
+                result[(state1, route)].append(state2)
+            else:
+                result[(state1, route)] = [state2]
 
         return result
+
+    @staticmethod
+    def is_valid(Q, sigma, q0, F, S):
+        if q0 not in Q:
+            return False
+        for transition in S.keys():
+            state1, route = transition
+            if state1 not in Q:
+                return False
+            if route not in sigma:
+                return False
+            for state2 in S[transition]:
+                if state2 not in Q:
+                    return False
+        for state2 in F:
+            if state2 not in Q:
+                return False
+        return True
 
     def __str__(self):
         return 'The defined Finite Automata:\n' \
@@ -78,4 +100,4 @@ class FiniteAutomata:
                + 'Σ = { ' + ', '.join(self.sigma) + ' }\n' \
                + 'q0 = ' + str(self.q0) + '\n' \
                + 'F = { ' + ', '.join(self.F) + ' }\n' \
-               + 'S = { ' + ', '.join([' -> '.join([str(part) for part in trans]) for trans in self.S]) + ' }\n'
+               + 'S = { ' + ', '.join([(str(key) + ' -> ' + str(self.S[key])) for key in self.S.keys()]) + ' }\n'

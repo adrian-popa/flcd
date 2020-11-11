@@ -14,6 +14,7 @@ class UI:
         s += '3 - All the transitions\n'
         s += '4 - The set of final states\n'
         s += '5 - Check valid DFA\n'
+        s += '6 - Check accepted sequence\n'
         s += '0 - Exit'
         print(s)
 
@@ -39,6 +40,12 @@ class UI:
                         print("The Finite Automata is deterministic")
                     else:
                         print("The Finite Automata is nondeterministic")
+                elif command == 6:
+                    sequence = input('Give a sequence: ')
+                    if self.__finite_automata.is_sequence_accepted(sequence):
+                        print("Valid sequence")
+                    else:
+                        print("Invalid sequence")
                 else:
                     print('Invalid command')
             except RuntimeError as e:

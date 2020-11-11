@@ -1,6 +1,6 @@
 digraph "classes" {
 charset="utf-8"
 rankdir=BT
-"0" [label="{FiniteAutomata|F\lQ\lS\lq0\lsigma\l|from_file(file_name)\lget_F()\lget_Q()\lget_S()\lget_sigma()\lis_dfa()\lparse_line(line)\lparse_transitions(parts)\l}", shape="record"];
+"0" [label="{FiniteAutomata|F\lQ\lS\lq0\lsigma\l|from_file(file_name)\lget_F()\lget_Q()\lget_S()\lget_sigma()\lis_dfa()\lis_sequence_accepted(sequence)\lis_valid(Q, sigma, q0, F, S)\lparse_line(line)\lparse_transitions(parts)\l}", shape="record"];
 "1" [label="{UI|\l|print_menu()\lrun()\l}", shape="record"];
 }

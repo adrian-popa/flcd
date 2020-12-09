@@ -61,7 +61,7 @@ public class Grammar {
         }
 
         while (line != null) {
-            StringTokenizer st = new StringTokenizer(line, "|->");
+            StringTokenizer st = new StringTokenizer(line, "|~");
             String currentSymbol = st.nextToken().trim();
             while (st.hasMoreTokens()) {
                 StringTokenizer tokenizer = new StringTokenizer(st.nextToken(), " ");

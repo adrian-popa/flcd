@@ -57,32 +57,32 @@ public class LR0Table {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
-        sb.append("Nr | Action   | goto\n");
-        sb.append("   |          | ");
+        stringBuilder.append("Nr | Action   | goto\n");
+        stringBuilder.append("   |          | ");
 
         for (String symbol : allSymbols) {
-            sb.append(symbol).append(" | ");
+            stringBuilder.append(symbol).append(" | ");
         }
-        sb.append("\n");
+        stringBuilder.append("\n");
 
         for (Pair<String, Map<String, Integer>> entry : table) {
-            sb.append(table.indexOf(entry)).append("  | ");
-            sb.append(entry.getKey());
+            stringBuilder.append(table.indexOf(entry)).append("  | ");
+            stringBuilder.append(entry.getKey());
             for (int i = 0; i < 8 - entry.getKey().length(); i++) {
-                sb.append(" ");
+                stringBuilder.append(" ");
             }
-            sb.append(" | ");
+            stringBuilder.append(" | ");
 
             for (String symbol : allSymbols) {
                 Integer toState = entry.getValue().get(symbol);
-                sb.append(toState != null ? toState : " ").append(" | ");
+                stringBuilder.append(toState != null ? toState : " ").append(" | ");
             }
-            sb.append("\n");
+            stringBuilder.append("\n");
         }
 
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     public String getAction(int state) {

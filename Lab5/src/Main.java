@@ -147,7 +147,14 @@ public class Main {
             System.out.print(output.pop() + ", ");
         }
 
-        System.out.println("\n");
+        output = parser.parseSequence(grammar, lr0Table, sequence);
+        ParserOutput parserOutput = new ParserOutput();
+        parserOutput.addParsedSequence(output, grammar);
+
+        System.out.println("\nLR(0) parsing tree:");
+        parserOutput.traverseTree(parserOutput.getRoot());
+
+        System.out.println();
     }
 }
 

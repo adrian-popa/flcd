@@ -1,6 +1,6 @@
 S A B
 a b c dd e f g
 S
-S ~ a S b S | a S | c
-A ~ dd e A | b | S f A e
-B ~ g B f B | dd
+S -> a S b S | a S | c
+A -> dd e A | b | S f A e
+B -> g B f B | dd

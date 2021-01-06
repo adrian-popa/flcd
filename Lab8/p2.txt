@@ -1,0 +1,25 @@
+integer task findMax(integer n1, integer n2, integer n3) defines:
+{
+integer max;
+max = n1;
+when n2 > max:
+{
+max = n2;
+}
+when n3 > max:
+{
+max = n3;
+}
+return max;
+}
+
+integer 1n1;
+1n1 = 13 sub 15;
+
+integer n2;
+n2 = 7 mul 2;
+
+integer n3;
+n3 = n2 div 4;
+
+findMax(1n1, n2, n3);

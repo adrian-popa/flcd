@@ -1,10 +1,12 @@
 %{
 #include <stdio.h>
 #include <string.h>
+#include "y.tab.h"
 int lines = 0;
 %}
 
 %option noyywrap
+%option caseless
 
 STRING		        \"[a-zA-Z0-9]*\"
 NUMBER		        [+-]?[1-9][0-9]*|0$
@@ -16,55 +18,59 @@ ID 		            {LETTER}{LETTER_OR_DIGIT}*
 
 %%
 
-task        {printf("Reserved word: %s\n", yytext);}
-defines     {printf("Reserved word: %s\n", yytext);}
-constant    {printf("Reserved word: %s\n", yytext);}
-integer     {printf("Reserved word: %s\n", yytext);}
-boolean     {printf("Reserved word: %s\n", yytext);}
-string      {printf("Reserved word: %s\n", yytext);}
-float       {printf("Reserved word: %s\n", yytext);}
-double      {printf("Reserved word: %s\n", yytext);}
-otherwise   {printf("Reserved word: %s\n", yytext);}
-when    {printf("Reserved word: %s\n", yytext);}
-return  {printf("Reserved word: %s\n", yytext);}
-console {printf("Reserved word: %s\n", yytext);}
-read	{printf("Reserved word: %s\n", yytext);}
-write	{printf("Reserved word: %s\n", yytext);}
-take	{printf("Reserved word: %s\n", yytext);}
-from	{printf("Reserved word: %s\n", yytext);}
-list	{printf("Reserved word: %s\n", yytext);}
-for	    {printf("Reserved word: %s\n", yytext);}
-while	{printf("Reserved word: %s\n", yytext);}
+start       {printf("Reserved word: %s\n", yytext); return START;}
+task        {printf("Reserved word: %s\n", yytext); return TASK;}
+defines     {printf("Reserved word: %s\n", yytext); return DEFINES;}
+constant    {printf("Reserved word: %s\n", yytext); return CONSTANT;}
+integer     {printf("Reserved word: %s\n", yytext); return INTEGER;}
+boolean     {printf("Reserved word: %s\n", yytext); return BOOLEAN;}
+string      {printf("Reserved word: %s\n", yytext); return STRING;}
+float       {printf("Reserved word: %s\n", yytext); return FLOAT;}
+double      {printf("Reserved word: %s\n", yytext); return DOUBLE;}
+when    {printf("Reserved word: %s\n", yytext); return WHEN;}
+otherwise   {printf("Reserved word: %s\n", yytext); return OTHERWISE;}
+return  {printf("Reserved word: %s\n", yytext); return RETURN;}
+console {printf("Reserved word: %s\n", yytext); return CONSOLE;}
+read	{printf("Reserved word: %s\n", yytext); return READ;}
+write	{printf("Reserved word: %s\n", yytext); return WRITE;}
+take	{printf("Reserved word: %s\n", yytext); return TAKE;}
+from	{printf("Reserved word: %s\n", yytext); return FROM;}
+list	{printf("Reserved word: %s\n", yytext); return LIST;}
+of	    {printf("Reserved word: %s\n", yytext); return OF;}
+for	    {printf("Reserved word: %s\n", yytext); return FOR;}
+while	{printf("Reserved word: %s\n", yytext); return WHILE;}
+do      {printf("Reserved word: %s\n", yytext); return DO;}
 
-":"     {printf("Separator: %s\n", yytext);}
-";"     {printf("Separator: %s\n", yytext);}
-","     {printf("Separator: %s\n", yytext);}
-"."     {printf("Separator: %s\n", yytext);}
-"{"     {printf("Separator: %s\n", yytext);}
-"}"     {printf("Separator: %s\n", yytext);}
-"("     {printf("Separator: %s\n", yytext);}
-")"     {printf("Separator: %s\n", yytext);}
-"["     {printf("Separator: %s\n", yytext);}
-"]"     {printf("Separator: %s\n", yytext);}
+":"     {printf("Separator: %s\n", yytext); return COLON;}
+";"     {printf("Separator: %s\n", yytext); return SEMI_COLON;}
+","     {printf("Separator: %s\n", yytext); return COMMA;}
+"."     {printf("Separator: %s\n", yytext); return DOT;}
+"{"     {printf("Separator: %s\n", yytext); return OPENED_CURLY_BRACKET;}
+"}"     {printf("Separator: %s\n", yytext); return CLOSED_CURLY_BRACKET;}
+"("     {printf("Separator: %s\n", yytext); return OPENED_ROUND_BRACKET;}
+")"     {printf("Separator: %s\n", yytext); return CLOSED_ROUND_BRACKET;}
+"["     {printf("Separator: %s\n", yytext); return OPENED_SQUARE_BRACKET;}
+"]"     {printf("Separator: %s\n", yytext); return CLOSED_SQUARE_BRACKET;}
 
-"add"   {printf("Operator: %s\n", yytext);}
-"sub"   {printf("Operator: %s\n", yytext);}
-"mul"   {printf("Operator: %s\n", yytext);}
-"div"   {printf("Operator: %s\n", yytext);}
-"<"     {printf("Operator: %s\n", yytext);}
-">"     {printf("Operator: %s\n", yytext);}
-"<="    {printf("Operator: %s\n", yytext);}
-">="    {printf("Operator: %s\n", yytext);}
-"!="    {printf("Operator: %s\n", yytext);}
-"=="    {printf("Operator: %s\n", yytext);}
-"="     {printf("Operator: %s\n", yytext);}
-"!"     {printf("Operator: %s\n", yytext);}
-"&&"    {printf("Operator: %s\n", yytext);}
-"||"    {printf("Operator: %s\n", yytext);}
+"add"   {printf("Operator: %s\n", yytext); return ADD;}
+"sub"   {printf("Operator: %s\n", yytext); return SUB;}
+"mul"   {printf("Operator: %s\n", yytext); return MUL;}
+"div"   {printf("Operator: %s\n", yytext); return DIV;}
+"mod"   {printf("Operator: %s\n", yytext); return MOD;}
+"<"     {printf("Operator: %s\n", yytext); return LT;}
+">"     {printf("Operator: %s\n", yytext); return GT;}
+"<="    {printf("Operator: %s\n", yytext); return LOET;}
+">="    {printf("Operator: %s\n", yytext); return GOET;}
+"!="    {printf("Operator: %s\n", yytext); return NOT_EQUAL;}
+"=="    {printf("Operator: %s\n", yytext); return EQUAL;}
+"="     {printf("Operator: %s\n", yytext); return ATTRIB;}
+"!"     {printf("Operator: %s\n", yytext); return NOT;}
+"&&"    {printf("Operator: %s\n", yytext); return AND;}
+"||"    {printf("Operator: %s\n", yytext); return OR;}
 
-{ID}	{printf("Identifier: %s\n", yytext);}
+{ID}	{printf("Identifier: %s\n", yytext); return ID;}
 
-{CONST}	{printf("Constant: %s\n", yytext);}
+{CONST}	{printf("Constant: %s\n", yytext); return CONST;}
 
 [ \t]+  {}
 [\n]+   {lines++;}
@@ -72,5 +78,7 @@ while	{printf("Reserved word: %s\n", yytext);}
 [+-]?0[0-9]*    {printf("Illegal constant at line %d: %s\n", lines, yytext);}
 
 [0-9~@#$%^&*/|][a-zA-Z0-9]*    {printf("Illegal identifier at line %d: %s\n", lines, yytext);}
+
+. {printf("Illegal character at line %d: %s\n", lines, yytext); return -1;}
 
 %%
